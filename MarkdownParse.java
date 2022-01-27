@@ -13,20 +13,29 @@ public class MarkdownParse {
         int pastCloseParen = 0;
         while(currentIndex < markdown.length()) {
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
-            //System.out.println("Value of currentIndex at the beginning of the loop: " + currentIndex);
+            
+            // System.out.println("Value of current index before loop: " + currentIndex);
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
             int openParen = markdown.indexOf("(", nextCloseBracket);
             int closeParen = markdown.indexOf(")", openParen);
 
-            if(pastCloseParen == closeParen) {
+            if(pastCloseParen == closeParen || nextOpenBracket == -1) {
                 break;
             }
             pastCloseParen = closeParen;
-
-            toReturn.add(markdown.substring(openParen + 1, closeParen));
-            System.out.println("Value of closeParen: " + closeParen);
-            currentIndex = closeParen + 1;
-            System.out.println("Value of currentIndex at end of loop: " + currentIndex);
+            
+            // System.out.println("Index of next open bracket: " + nextOpenBracket);
+            // System.out.println("Index of next open bracket - 1: " + (nextOpenBracket - 1));
+            if(nextOpenBracket != 0) {
+                if(!markdown.substring(nextOpenBracket-1, nextOpenBracket).equals("!")){
+                    toReturn.add(markdown.substring(openParen + 1, closeParen));
+                }
+                currentIndex = closeParen + 1;
+            } else {
+                toReturn.add(markdown.substring(openParen + 1, closeParen));
+                currentIndex = closeParen + 1;
+            }
+            // System.out.println("Value of current index after loop: " + currentIndex);
         }
         return toReturn;
     }
