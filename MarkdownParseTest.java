@@ -61,4 +61,9 @@ public class MarkdownParseTest {
         ArrayList<String> links = MarkdownParse.getLinks(contents);
         assertEquals(linkTester, links);
     }
+
+    @Test
+    public void testFails() throws IOException{
+        assertEquals(1, 1+1);
+    }
 }
