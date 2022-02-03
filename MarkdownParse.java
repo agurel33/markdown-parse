@@ -18,12 +18,17 @@ public class MarkdownParse {
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
             int openParen = markdown.indexOf("(", nextCloseBracket);
             int closeParen = markdown.indexOf(")", openParen);
-
+            
             if(pastCloseParen == closeParen || nextOpenBracket == -1 || nextCloseBracket == -1 || openParen == -1 || closeParen == -1) {
                 break;
             }
             pastCloseParen = closeParen;
             
+            String spaceCheck = markdown.substring(nextOpenBracket,closeParen);
+            if(spaceCheck.indexOf("\n")>=0) {
+                break;
+            }
+
             // System.out.println("Index of next open bracket: " + nextOpenBracket);
             // System.out.println("Index of next open bracket - 1: " + (nextOpenBracket - 1));
             if(nextOpenBracket != 0) {
