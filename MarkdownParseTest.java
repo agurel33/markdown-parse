@@ -6,10 +6,13 @@ import java.nio.file.Path;
 import java.io.IOException;
 
 
-//To compile/run:
+//To compile/run: WINDOWS
 //javac -cp ".;lib\junit-4.13.2.jar;lib\hamcrest-core-1.3.jar" MarkdownParseTest.java
 //java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore MarkdownParseTest
 
+// LINUX
+//javac -cp ".:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar" MarkdownParseTest.java
+//java -cp ".:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore MarkdownParseTest
 public class MarkdownParseTest {
     @Test
     public void addition() {
@@ -77,6 +80,19 @@ public class MarkdownParseTest {
         ArrayList<String> linkTester = new ArrayList<>();
 
         Path fileName = Path.of("test-file6.md");
+	    String contents = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(contents);
+        assertEquals(linkTester, links);
+    }
+
+    @Test
+    public void testSnippet1() throws IOException{
+        ArrayList<String> linkTester = new ArrayList<>();
+        linkTester.add("google.com");
+        linkTester.add("google.com");
+        linkTester.add("ucsd.edu");
+
+        Path fileName = Path.of("snippet1.md");
 	    String contents = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse.getLinks(contents);
         assertEquals(linkTester, links);
