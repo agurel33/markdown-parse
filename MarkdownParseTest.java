@@ -97,4 +97,17 @@ public class MarkdownParseTest {
         ArrayList<String> links = MarkdownParse.getLinks(contents);
         assertEquals(linkTester, links);
     }
+
+    @Test
+    public void testSnippet2() throws IOException{
+        ArrayList<String> linkTester = new ArrayList<>();
+        linkTester.add("a.com");
+        linkTester.add("a.com(())");
+        linkTester.add("example.com");
+
+        Path fileName = Path.of("snippet2.md");
+	    String contents = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(contents);
+        assertEquals(linkTester, links);
+    }
 }
