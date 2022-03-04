@@ -114,9 +114,7 @@ public class MarkdownParseTest {
     @Test
     public void testSnippet3() throws IOException{
         ArrayList<String> linkTester = new ArrayList<>();
-        linkTester.add("https://www.twitter.com");
         linkTester.add("https://ucsd-cse15l-w22.github.io/");
-        linkTester.add("https://cse.ucsd.edu/");
 
         Path fileName = Path.of("snippet3.md");
 	    String contents = Files.readString(fileName);
