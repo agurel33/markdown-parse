@@ -88,7 +88,7 @@ public class MarkdownParseTest {
     @Test
     public void testSnippet1() throws IOException{
         ArrayList<String> linkTester = new ArrayList<>();
-        linkTester.add("google.com");
+        linkTester.add("`google.com");
         linkTester.add("google.com");
         linkTester.add("ucsd.edu");
 
